@@ -452,7 +452,7 @@ Begin["`Private`"];
 	DeclareClass[class_Symbol ? ClassQ] := Null /; Message[DeclareClass::aldec, class];
 	expr : DeclareClass[class_Symbol] /; !ClassQ[class] && !UnprotectedQ[class] := Null /; Message[DeclareClass::write, class, HoldForm[expr]];
 		
-	DeclareClass[parent_Symbol ? ClassQ, class_Symbol] /; !ClassQ[class] && UnprotectedQ[class] && UnprotectedQ[parent] := (
+	DeclareClass[parent_Symbol ? ClassQ, class_Symbol] /; !ClassQ[class] && UnprotectedQ[class] := (
 	
 		(*Usage*)
 		With[{className = SymbolName[class]}, SetUsage[class, className <> "[args$] represents an instance of the class " <> className <> ", with elements stored in the arguments args$."]];
@@ -611,7 +611,6 @@ Begin["`Private`"];
 	DeclareClass[parent_Symbol ? ClassQ, class_] /; !MatchQ[class, _Symbol] := Null /; Message[DeclareClass::sym, 2, class];
 	DeclareClass[parent_Symbol ? ClassQ, class_Symbol ? ClassQ] := Null /; Message[DeclareClass::aldec, class];
 	expr : DeclareClass[parent_Symbol ? ClassQ, class_Symbol] /; !ClassQ[class] && !UnprotectedQ[class] := Null /; Message[DeclareClass::write, class, HoldForm[expr]];
-	expr : DeclareClass[parent_Symbol ? ClassQ, class_Symbol] /; !ClassQ[class] && UnprotectedQ[class] && !UnprotectedQ[parent] := Null /; Message[DeclareClass::write, parent, HoldForm[expr]];
 	
 	(*Bulletproofing*)
 	SetAttributes[
