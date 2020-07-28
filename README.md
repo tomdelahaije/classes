@@ -1,2 +1,2 @@
 # classes
-Classes` package for Mathematica.
+Classes package for Mathematica.
